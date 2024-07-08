@@ -1,3 +1,11 @@
+  @php 
+ 
+$categories= Illuminate\Support\Facades\DB::table('categories')->get();  
+
+
+@endphp    
+
+
 <div class="container">
     <nav class="main-menu d-flex navbar navbar-expand-lg ">
 
@@ -47,67 +55,53 @@
             </div>
 
             <div class="offcanvas-body justify-content-between">
-                <select class="filter-categories border-0 mb-0 me-5">
+                 <select class="filter-categories border-0 mb-0 me-5">
                     {{-- <option>Shop by Category</option>
                     @foreach ($data as $row)
                         <option>{{ $row->categoryName }}</option>
                     @endforeach --}}
+ 
+                     @foreach($categories as $category)
+                     <option>   {{ $category->categoryName }} </option>
+                @endforeach  
 
 
                 </select>
 
                 <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link active">Home</a>
+                        <a href="{{ route('welcome') }}" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                            aria-expanded="false">Pages</a>
+                            aria-expanded="false">Category</a>
                         <ul class="dropdown-menu" aria-labelledby="pages">
-                            <li><a href="about.html" class="dropdown-item">About Us<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="shop.html" class="dropdown-item">Shop<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="single-product.html" class="dropdown-item">Single Product<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="cart.html" class="dropdown-item">Cart<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="wishlist.html" class="dropdown-item">Wishlist<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="checkout.html" class="dropdown-item">Checkout<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="blog.html" class="dropdown-item">Blog<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="single-post.html" class="dropdown-item">Single Post<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="contact.html" class="dropdown-item">Contact<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="faqs.html" class="dropdown-item">FAQs<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="account.html" class="dropdown-item">Account<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="thank-you.html" class="dropdown-item">Thankyou<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="error.html" class="dropdown-item">Error 404<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
-                            <li><a href="styles.html" class="dropdown-item">Styles<span
-                                        class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                            @foreach($categories as $category)
+                            <li><a href="{{ route('cat', $category->id) }}" class="dropdown-item">  {{ $category->categoryName }}<span
+                                class="badge bg-success text-dark ms-2">PRO</span> </a></li>
+                       @endforeach  
+
+                            
+                           
+                            
+                          
+                           
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="shop.html" class="nav-link">Shop</a>
+                        <a href="{{ route('welcome') }}" class="nav-link">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a href="blog.html" class="nav-link">Blog</a>
+                        <a href="{{ route('welcome') }}" class="nav-link">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a href="contact.html" class="nav-link">Contact</a>
+                        <a href="{{ route('welcome') }}" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Others</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://templatesjungle.gumroad.com/l/waggy-pet-shop-ecommerce-html-website-template"
+                        <a href="{{ route('welcome') }}"
                             class="nav-link fw-bold text-dark" target="_blank">GET PRO</a>
                     </li>
                 </ul>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Product;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+ 
+
+Route::get('/components/top', [CategoryController::class, 'index']);
 
 Route::get('/welcome', [Product::class,'CatShow'])->name('welcome');
 Route::get('/cat/{id}', [Product::class,'ProductList'])->name('cat');

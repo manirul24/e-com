@@ -1,5 +1,8 @@
-<x-app>
+{{-- @include('components.top',['categories'=>$categories]); --}}
 
+
+<x-app>
+   
     <section id="categories">
         <div class="container my-3 py-5">
             <div class="row my-5">

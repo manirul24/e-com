@@ -1,7 +1,6 @@
 <x-layouts>
 
-
-
+ 
 
     <section id="foodies" class="my-5">
         <div class="container my-5 py-5">
@@ -44,6 +43,7 @@
                         <div class="card position-relative">
                             <a href="{{ route('product', $row->id) }}"><img src="{{ $row->image }}"
                                     class="img-fluid rounded-4" alt="image"></a>
+                                    {{ $row->title }}
                             <div class="card-body p-0">
                                 <a href="{{ route('product', $row->id) }}">
                                     <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
@@ -77,16 +77,18 @@
                     </div>
                 @endforeach
 
-
+               
 
 
 
             </div>
 
-
+            <div class="d-flex justify-content-center">
+                {{ $data->links() }}
+            </div>
         </div>
     </section>
 
-
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 </x-layouts>

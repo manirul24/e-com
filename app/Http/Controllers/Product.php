@@ -7,14 +7,29 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends Controller
 {
+
+   
+    private  $categories;
+    public function __construct()
+    {
+        $this->categories = DB::table('categories')->get();
+       
+    }
+
+
     public function CatShow(){
       
      // $result= DB::table('categories')->selectRaw('categoryName','categoryImg')->get();
 
       $data= DB::table('categories')->get();
+
+      //$categories= DB::table('categories')->get();
+
+      //dd($categories);
+
        // return view('/welcome',$result);
 
-    return view('/welcome', compact('data'));
+    return view('welcome', compact('data'));
         
     }
 
@@ -22,10 +37,10 @@ class Product extends Controller
       
      // $result= DB::table('categories')->selectRaw('categoryName','categoryImg')->get();
     $catId = $request->id;
-      $data= DB::table('products')->where('category_id','=',$request->id)->get();
+      $data= DB::table('products')->where('category_id','=',$request->id)->latest()->orderBy('id')->paginate(8);
        // return $data;
 
-    return view('/product', compact('data'));
+ return view('/product', compact('data'));
         
     }
 
@@ -37,7 +52,7 @@ class Product extends Controller
 
         $data = DB::table('products')
             ->leftJoin('product_details', 'product_details.product_id', '=', 'products.id')
-            ->select('title','short_des','price','discount','discount_price','image','products.id' )
+            ->select('title','short_des','price','discount','discount_price','image','products.id','star','stock' )
              ->where('products.id','=', $request->id)
             ->get();
 
